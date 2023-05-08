@@ -20,7 +20,7 @@ export const Product = (item) => {
         }
 
         setCurrentImage(images[0]);
-    }, [])
+    }, [images])
 
     const addToCart = () => {
         dispatch(addItemToCart(item))
