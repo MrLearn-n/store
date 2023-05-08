@@ -12,7 +12,7 @@ export const Header = () => {
     const dispatch = useDispatch();
     const navigate = useNavigate();
     const { searchResult, isSearchLoading } = useSelector(({ products }) => products)
-    const { currentUser } = useSelector(({ user }) => user)
+    const { currentUser, cart } = useSelector(({ user }) => user)
     const [searchValue, setSearchValue] = useState("");
     const [valuse, setValues] = useState({
         name: 'Guest',
@@ -42,7 +42,6 @@ export const Header = () => {
     const handleChange = (event) => {
         setSearchValue(event.target.value);
     }
-
 
     return (
         <div className={style.header}>
@@ -110,7 +109,16 @@ export const Header = () => {
                         <svg className="icon">
                             <use xlinkHref={`${process.env.PUBLIC_URL}/sprite.svg#bag`} />
                         </svg>
-                        <span className={style.count}>2</span>
+                        {!cart.length ? 
+                            (
+                                <div></div>
+                            )
+                            :
+                            (
+                                <span className={style.count}>{cart.length}</span>
+                            )
+                        }
+                        {/* <span className={style.count}></span> */}
                     </Link>
                 </div>
             </div>
